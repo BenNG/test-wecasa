@@ -7,7 +7,6 @@ export const createBooking = createAsyncThunk(
     const response = await wecasaApi.post("/booking", {
       ...data,
     });
-    console.log("response.data", response.data);
     return response.data;
   }
 );

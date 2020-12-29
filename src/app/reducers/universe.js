@@ -5,7 +5,6 @@ export const fetchUniverse = createAsyncThunk(
   "universe/fetchUniverse",
   async () => {
     const response = await wecasaApi.get("/universe");
-    console.log("response.data", response.data);
     return response.data;
   }
 );

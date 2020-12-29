@@ -25,7 +25,6 @@ const Appointment = () => {
   const { status } = useSelector((state) => state.booking);
 
   const selectedDate = new Date(`${date} ${time}`);
-  console.log("status", status);
   const isButtonDisabled = status === "pending" || !isDateValidFn(selectedDate);
   return (
     <Layout>

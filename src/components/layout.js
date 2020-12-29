@@ -32,7 +32,6 @@ const Layout = ({ children }) => {
         </div>
       </header>
       <div className="overflow-y-auto h-full">{children}</div>
-      {console.log("pathname", pathname)}
       {(pathname === "/prestation" || pathname === "/address") &&
       Array.isArray(prestations) &&
       prestations.length > 0 ? (
