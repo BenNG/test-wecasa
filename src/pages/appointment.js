@@ -3,6 +3,8 @@ import Layout from "../components/layout";
 import { format, parseISO, isFuture, isValid } from "date-fns";
 import { useDispatch, useSelector } from "react-redux";
 import { createBooking } from "../app/reducers/booking";
+import { useHistory } from "react-router-dom";
+import { basketSlice } from "../app/reducers/basket";
 
 const isDateValidFn = (selectedDate) => {
   if (!isValid(selectedDate)) {
@@ -15,6 +17,7 @@ const isDateValidFn = (selectedDate) => {
 
 const Appointment = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
@@ -51,12 +54,17 @@ const Appointment = () => {
         <button
           onClick={async () => {
             await dispatch(
+              basketSlice.actions.setDate(selectedDate.toISOString())
+            );
+
+            await dispatch(
               createBooking({
                 prestations: prestations.map((p) => p.reference),
                 appointment: selectedDate,
                 address: address,
               })
             );
+            history.push("/confirmation");
           }}
           disabled={isButtonDisabled}
           className={` w-full py-3 text-white rounded-lg shadow-md ${
