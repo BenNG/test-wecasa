@@ -4,13 +4,25 @@ import { useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 const Layout = ({ children }) => {
-  const { prestations, priceTotal, durationTotal } = useSelector(
+  const { prestations, priceTotal, durationTotal, address } = useSelector(
     (state) => state.basket
   );
   let { pathname } = useLocation();
 
   const basketDestination =
     pathname === "/prestation" ? "/address" : "appointment";
+
+  const somePrestationWereSelected =
+    Array.isArray(prestations) && prestations.length > 0;
+
+  let isButtonDisabled;
+  if (pathname === "/prestation" && somePrestationWereSelected) {
+    isButtonDisabled = false;
+  } else if (pathname === "/address" && address) {
+    isButtonDisabled = false;
+  } else {
+    isButtonDisabled = true;
+  }
 
   return (
     <div className="flex flex-col h-full justify-between">
@@ -44,7 +56,10 @@ const Layout = ({ children }) => {
 
             <Link to={basketDestination}>
               <button
-                className="bg-orange px-5 py-1 rounded-full text-white"
+                disabled={isButtonDisabled}
+                className={` px-5 py-1 rounded-full text-white ${
+                  isButtonDisabled ? "bg-gray-300" : "bg-orange"
+                }`}
                 type="button"
               >
                 Next
