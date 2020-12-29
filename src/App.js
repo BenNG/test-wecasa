@@ -5,16 +5,11 @@ import Prestation from "./pages/prestation";
 import Address from "./pages/address";
 import Appointment from "./pages/appointment";
 import Confirmation from "./pages/confirmation";
+import Error404 from "./pages/404";
 
 function App() {
   return (
-    <div>
-      <header className="bg-orange py-3 text-white">
-        <div className="container mx-auto font-semibold uppercase">
-          Welcome to test-wecasa
-        </div>
-      </header>
-      <div className="h-3"></div>
+    <div className="h-full">
       <Switch>
         <Route path="/prestation">
           <Prestation />
@@ -27,6 +22,9 @@ function App() {
         </Route>
         <Route path="/confirmation">
           <Confirmation />
+        </Route>
+        <Route path="*">
+          <Error404 />
         </Route>
       </Switch>
       <Redirect to="/prestation" />
