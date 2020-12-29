@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const basketSlice = createSlice({
   name: "basket",
   initialState: {
+    date: "",
     address: "",
     prestations: [],
     priceTotal: 0,
@@ -40,8 +41,10 @@ export const basketSlice = createSlice({
       state.durationTotal = durationTotal;
     },
     setAddress: (state, action) => {
-      console.log("action.playload", action.payload);
       state.address = action.payload;
+    },
+    setDate: (state, action) => {
+      state.date = action.payload;
     },
   },
 });

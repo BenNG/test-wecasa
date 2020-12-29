@@ -12,6 +12,7 @@
     "algolia-places-react": "^1.6.1",
     "autoprefixer": "^9.8.6",
     "axios": "^0.21.1",
+    "date-fns": "^2.16.1",
     "eslint": "^7.16.0",
     "eslint-plugin-react": "^7.21.5",
     "formik": "^2.2.6",
